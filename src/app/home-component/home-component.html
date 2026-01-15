@@ -1,0 +1,6 @@
+@if (authSvc.userNameSignal()) {
+  <h2>Welcome, {{ authSvc.userNameSignal() }} 👋</h2>
+} @else {
+  <h2>Welcome to the Institute App</h2>
+  <p>Please login to continue.</p>
+}

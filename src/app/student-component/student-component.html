@@ -1,0 +1,106 @@
+<div class="container mt-4">
+
+  <h2 class="text-center mb-4">Student Management</h2>
+
+  <div class="card shadow-sm mb-4">
+    <div class="card-header d-flex justify-content-between align-items-center">
+      <span class="fw-bold">Student Form</span>
+      <button class="btn btn-secondary btn-sm" type="button" (click)="newStudent()">New</button>
+    </div>
+
+    <div class="card-body">
+      <form>
+
+        <div class="row mb-3">
+          <label class="col-sm-3 col-form-label">Roll No</label>
+          <div class="col-sm-6">
+            <input type="text" class="form-control"
+                   [(ngModel)]="student.rollNo" name="rollNo">
+          </div>
+          <div class="col-sm-3">
+            <button type="button" class="btn btn-info w-100" (click)="getStudent()">Show</button>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="col-sm-3 col-form-label">Student Name</label>
+          <div class="col-sm-9">
+            <input type="text" class="form-control"
+                   [(ngModel)]="student.studentName" name="studentName">
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="col-sm-3 col-form-label">Batch Code</label>
+          <div class="col-sm-9">
+            <!-- <input type="text" class="form-control"
+                   [(ngModel)]="student.batchCode" name="batchCode"> -->
+            <select [(ngModel)]="student.batchCode" name="batchCode">
+                @for(batch of batches;track batch){
+                    <option [value]="batch.batchCode">{{batch.batchCode}}</option>
+                }
+            </select>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="col-sm-3 col-form-label">Address</label>
+          <div class="col-sm-9">
+            <input type="text" class="form-control"
+                   [(ngModel)]="student.studentAddress" name="studentAddress">
+          </div>
+        </div>
+
+        <div class="d-flex gap-2 justify-content-end">
+          <button class="btn btn-success" type="button" (click)="addStudent()">Save</button>
+          <button class="btn btn-warning" type="button" (click)="updateStudent()">Update</button>
+          <button class="btn btn-danger" type="button" (click)="deleteStudent()">Delete</button>
+          <button class="btn btn-secondary" type="button" (click)="getStudentByBatch()">GetByBatch</button>
+        </div>
+
+        <div *ngIf="errMsg" class="alert alert-danger mt-3 mb-0">
+          {{ errMsg }}
+        </div>
+
+      </form>
+    </div>
+  </div>
+
+  <div class="card shadow-sm">
+    <div class="card-header d-flex justify-content-between align-items-center">
+      <span class="fw-bold">List of Students</span>
+      <button class="btn btn-primary btn-sm" (click)="showAllStudents()">Show All</button>
+    </div>
+
+    <div class="card-body p-0">
+      <table class="table table-striped table-hover mb-0">
+        <thead class="table-dark">
+          <tr>
+            <th>Roll No</th>
+            <th>Name</th>
+            <th>Batch</th>
+            <th>Address</th>
+          </tr>
+        </thead>
+        <tbody>
+          @for (s of students; track s) {
+            <tr>
+              <td>{{ s.rollNo }}</td>
+              <td>{{ s.studentName }}</td>
+              <td>{{ s.batchCode }}</td>
+              <td>{{ s.studentAddress }}</td>
+            </tr>
+          }
+          @empty {
+            <tr>
+              <td colspan="4" class="text-center text-muted py-3">
+                No students found
+              </td>
+            </tr>
+          }
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+</div>

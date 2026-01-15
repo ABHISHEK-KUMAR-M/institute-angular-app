@@ -1,0 +1,7 @@
+
+<h2>Register Form</h2>
+<form #registerForm="ngForm">
+    UserName:<input type="text" [(ngModel)]="user.userName" name="Username">
+    Password:<input type="text" [(ngModel)]="user.userPassword" name="userPassword"><br>
+    <input type="button" value="Save" (click)="register()">
+</form>

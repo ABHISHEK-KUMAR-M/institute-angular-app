@@ -1,0 +1,8 @@
+
+<h2>Login Form</h2>
+<form #registerForm="ngForm">
+    UserName:<input type="text" [(ngModel)]="UserName" name="Username">
+    Password:<input type="text" [(ngModel)]="UserPassword" name="userPassword"><br>
+    <input type="button" value="Login" (click)="login()">
+</form>
+<div style="color:red">{{errMsg}}</div>
